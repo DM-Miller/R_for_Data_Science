@@ -1,0 +1,141 @@
+---
+title: "Functions in R"
+author: "David Miller"
+date: "10/28/2020"
+output: html_document
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+One of the great strengths of R is the user's ability to add functions.
+• Sometimes there is a small task (or series of tasks) you need done and
+you find yourself having to repeat it multiple times. • In these types
+of situations, it can be helpful to create your own custom function. o
+The structure of a function is given below: name\_of\_function \<-
+function(argument1, argument2) { statements or code that does something
+return(something) } o First you give your function a name. o Then you
+assign value to it, where the value is the function.
+
+When defining the function you will want to provide the list of
+arguments required (inputs and/or options to modify behaviour of the
+function), and wrapped between curly brackets ( {} ) place the tasks
+that are being executed on/using those arguments.
+
+he argument(s) can be any type of object (like a scalar, a matrix, a
+dataframe, a vector, a logical, etc), and it's not necessary to define
+what it is in any way.
+
+Finally, you can "return" the value of the object from the function,
+meaning pass the value of it into the global environment o The important
+idea behind functions is that objects that are created within the
+function are local to the environment of the function -- they don't
+exist outside of the function
+
+NOTE: You can also have a function that doesnt require any arguments,
+nor will it return anything.
+
+Let's try creating a simple example function.
+
+-   This function will take in a numeric value as input, and return the
+    squared value.
+
+```{r}
+square_it <- function(x) {
+    square <- x * x
+    return(square)
+}
+```
+
+Now, we can use the function as we would any other function.
+
+We type out the name of the function, and inside the parentheses we
+provide a numeric value x: 
+
+```{r}
+square_it(5)
+```
+
+
+You could also just write 
+
+
+```{r}
+square_it<-function(x){
+x * x
+}
+
+```
+
+This will give you the same result in the console 
+
+Now, it's not necessarily the case that you must use return() at the end of your function. The reason you return an object is if you've saved the value of your statements into an object inside the function -- in this case, the objects in the function are in a local environment and won't appear in your global environment.
+
+See how it works in the following two examples:
+
+```{r}
+fun1 <- function(x) {
+  3 * x - 1 
+  }
+
+fun1(5)
+```
+
+```{r}
+fun2 <- function(x) {
+  y <- 3 * x - 1 
+  }
+
+fun2(5)
+```
+
+
+
+
+In the first function, we just evaluated the statement 3*x-1
+without saving it anywhere inside the function. 
+
+So when I run fun1(5), the result comes popping out of the function. 
+However, when I call fun2(5), nothing happens. 
+
+That's because the object y that I saved my result into doesn't exist outside the function and I haven't used return(y) to pass the value of y outside the function. 
+
+When I try to print y, it doesn't exist because it was created in the local environment of the function. 
+```{r}
+print(y)
+```
+
+Let's try a function of two arguments
+```{r}
+fun_2 <- function(x, y) {
+  a <- x * x
+  b <- y - 1
+  z <- a + b -5
+return(z)
+}
+
+# let's call fun_2 with a 10
+fun_2(10,1)
+```
+
+et's try a function of two arguments, but only write the function to incorporate 1
+```{r}
+fun_2 <- function(x, y) {
+  a <- x * x
+  b <- 1
+  z <- a + b -5
+return(z)
+}
+
+# let's call fun_2 with a 10
+fun_2(10,1)
+```
+
+
+```{r}
+
+```
